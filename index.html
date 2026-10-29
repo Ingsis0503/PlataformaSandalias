@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario de Sandalias</title>
     <!-- Vincula el archivo de estilos CSS -->
-    <link rel="stylesheet" href="prueba.css">
+    <link rel="stylesheet" href="Estilo.css">
 </head>
 <body>
     <div class="container">
@@ -13,7 +13,7 @@
             <h1>Gestión de Inventario - Fábrica de Sandalias</h1>
         </header>
 
-        <!-- Tarjetas de Estadísticas -->
+        
         <div class="stats">
             <div class="stat-card">
                 <h3>Stock Total Disponible</h3>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="main-content">
-            <!-- Tabla de Inventario -->
+            
             <div class="panel inventory-panel">
                 <h2>Inventario Actual</h2>
                 <table id="inventory-table">
@@ -44,14 +44,14 @@
                         </tr>
                     </thead>
                     <tbody id="inventory-body">
-                        <!-- Las filas se generarán automáticamente aquí con JavaScript -->
+                       
                     </tbody>
                 </table>
             </div>
 
-            <!-- Formularios Laterales -->
+               
             <div class="sidebar">
-                <!-- Formulario: Agregar Modelo -->
+                
                 <div class="panel">
                     <h2>Agregar Nuevo Modelo</h2>
                     <form id="add-model-form">
@@ -64,13 +64,13 @@
                     </form>
                 </div>
 
-                <!-- Formulario: Registrar Venta -->
+               
                 <div class="panel">
                     <h2>Registrar Venta</h2>
                     <form id="sale-form">
                         <select id="sale-model" required>
                             <option value="">Selecciona un modelo disponible...</option>
-                            <!-- Las opciones se actualizan automáticamente -->
+                            
                         </select>
                         <input type="number" id="sale-quantity" placeholder="Cantidad vendida" min="1" required>
                         <button type="submit" class="btn-success">Registrar Venta</button>
@@ -79,8 +79,7 @@
             </div>
         </div>
     </div>
-    
-    <!-- Vincula el archivo de lógica JavaScript -->
-   <script src="prueba.js"></script>    
+
+   <script src="Control.js"></script>    
 </body>
 </html>
