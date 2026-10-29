@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventario de Sandalias</title>
+    <!-- Vincula el archivo de estilos CSS -->
+    <link rel="stylesheet" href="prueba.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Gestión de Inventario - Fábrica de Sandalias</h1>
+        </header>
+
+        <!-- Tarjetas de Estadísticas -->
+        <div class="stats">
+            <div class="stat-card">
+                <h3>Stock Total Disponible</h3>
+                <p id="total-stock">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Pares Vendidos (Hoy)</h3>
+                <p id="total-sales">0</p>
+            </div>
+            <div class="stat-card">
+                <h3>Ingresos de Ventas</h3>
+                <p id="total-revenue">$0</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Tabla de Inventario -->
+            <div class="panel inventory-panel">
+                <h2>Inventario Actual</h2>
+                <table id="inventory-table">
+                    <thead>
+                        <tr>
+                            <th>Modelo</th>
+                            <th>Talla</th>
+                            <th>Color</th>
+                            <th>Precio Unitario</th>
+                            <th>Stock</th>
+                        </tr>
+                    </thead>
+                    <tbody id="inventory-body">
+                        <!-- Las filas se generarán automáticamente aquí con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Formularios Laterales -->
+            <div class="sidebar">
+                <!-- Formulario: Agregar Modelo -->
+                <div class="panel">
+                    <h2>Agregar Nuevo Modelo</h2>
+                    <form id="add-model-form">
+                        <input type="text" id="new-model" placeholder="Nombre del Modelo (Ej. Sandalia Roma)" required>
+                        <input type="number" id="new-size" placeholder="Talla (Ej. 38)" required>
+                        <input type="text" id="new-color" placeholder="Color (Ej. Negro)" required>
+                        <input type="number" id="new-price" placeholder="Precio ($)" required>
+                        <input type="number" id="new-stock" placeholder="Cantidad a ingresar" required>
+                        <button type="submit">Guardar en Inventario</button>
+                    </form>
+                </div>
+
+                <!-- Formulario: Registrar Venta -->
+                <div class="panel">
+                    <h2>Registrar Venta</h2>
+                    <form id="sale-form">
+                        <select id="sale-model" required>
+                            <option value="">Selecciona un modelo disponible...</option>
+                            <!-- Las opciones se actualizan automáticamente -->
+                        </select>
+                        <input type="number" id="sale-quantity" placeholder="Cantidad vendida" min="1" required>
+                        <button type="submit" class="btn-success">Registrar Venta</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Vincula el archivo de lógica JavaScript -->
+   <script src="prueba.js"></script>    
+</body>
+</html>
