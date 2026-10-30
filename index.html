@@ -3,83 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inventario de Sandalias</title>
-    <!-- Vincula el archivo de estilos CSS -->
+    <title>Inventario y Pedidos de Sandalias</title>
     <link rel="stylesheet" href="Estilo.css">
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Gestión de Inventario - Fábrica de Sandalias</h1>
+            <h1>Fábrica de Sandalias - Panel de Control</h1>
+            <div class="tabs">
+                <button id="btn-tab-inventario" class="tab-btn active" onclick="switchTab('inventario')">Inventario y Pedidos</button>
+                <button id="btn-tab-registros" class="tab-btn" onclick="switchTab('registros')">Registros de Ventas</button>
+            </div>
         </header>
 
-        
-        <div class="stats">
-            <div class="stat-card">
-                <h3>Stock Total Disponible</h3>
-                <p id="total-stock">0</p>
+        <div id="tab-inventario" class="tab-content active-tab">
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>Stock Total Disponible</h3>
+                    <p id="total-stock">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Pares Vendidos (Histórico)</h3>
+                    <p id="total-sales">0</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Ingresos Totales</h3>
+                    <p id="total-revenue">$0</p>
+                </div>
             </div>
-            <div class="stat-card">
-                <h3>Pares Vendidos (Hoy)</h3>
-                <p id="total-sales">0</p>
-            </div>
-            <div class="stat-card">
-                <h3>Ingresos de Ventas</h3>
-                <p id="total-revenue">$0</p>
+
+            <div class="main-content">
+                <div class="panel inventory-panel">
+                    <h2>Inventario Actual</h2>
+                    <table id="inventory-table">
+                        <thead>
+                            <tr>
+                                <th>Modelo</th>
+                                <th>Talla</th>
+                                <th>Color</th>
+                                <th>Precio Und.</th>
+                                <th>Stock</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-body"></tbody>
+                    </table>
+                </div>
+
+                <div class="sidebar">
+                    <!-- Formulario de Agregar / Editar -->
+                    <div class="panel">
+                        <h2 id="form-title">1. Agregar Nuevo Modelo</h2>
+                        <form id="add-model-form">
+                            <input type="text" id="new-model" placeholder="Nombre (Ej. Sandalia Roma)" required>
+                            <div class="row-inputs">
+                                <input type="number" id="new-size" placeholder="Talla" required>
+                                <input type="text" id="new-color" placeholder="Color" required>
+                            </div>
+                            <div class="row-inputs">
+                                <input type="number" id="new-price" placeholder="Precio ($)" required>
+                                <input type="number" id="new-stock" placeholder="Cantidad" required>
+                            </div>
+                            <button type="submit" id="btn-submit-model">Guardar en Inventario</button>
+                            <button type="button" id="btn-cancel-edit" class="btn-secondary" style="display: none; margin-top: 10px;">Cancelar Edición</button>
+                        </form>
+                    </div>
+
+                    <div class="panel">
+                        <h2>2. Armar Pedido</h2>
+                        <form id="add-to-cart-form" class="mb-3">
+                            <select id="cart-model" required>
+                                <option value="">Selecciona un modelo...</option>
+                            </select>
+                            <input type="number" id="cart-quantity" placeholder="Cantidad" min="1" required>
+                            <button type="submit" class="btn-secondary">Añadir al Pedido</button>
+                        </form>
+
+                        <div class="cart-summary">
+                            <h3>Resumen del Pedido</h3>
+                            <ul id="cart-items">
+                                <li class="empty-cart">El pedido está vacío</li>
+                            </ul>
+                            <div class="cart-total">
+                                <strong>Total a Pagar: </strong>
+                                <span id="cart-total-price">$0</span>
+                            </div>
+                        </div>
+
+                        <form id="finalize-order-form">
+                            <input type="text" id="order-client" placeholder="Nombre del Cliente" required>
+                            <input type="date" id="order-date" required>
+                            <button type="submit" class="btn-success">Finalizar y Registrar Pedido</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="main-content">
-            
-            <div class="panel inventory-panel">
-                <h2>Inventario Actual</h2>
-                <table id="inventory-table">
-                    <thead>
-                        <tr>
-                            <th>Modelo</th>
-                            <th>Talla</th>
-                            <th>Color</th>
-                            <th>Precio Unitario</th>
-                            <th>Stock</th>
-                        </tr>
-                    </thead>
-                    <tbody id="inventory-body">
-                       
-                    </tbody>
-                </table>
-            </div>
-
-               
-            <div class="sidebar">
-                
-                <div class="panel">
-                    <h2>Agregar Nuevo Modelo</h2>
-                    <form id="add-model-form">
-                        <input type="text" id="new-model" placeholder="Nombre del Modelo (Ej. Sandalia Roma)" required>
-                        <input type="number" id="new-size" placeholder="Talla (Ej. 38)" required>
-                        <input type="text" id="new-color" placeholder="Color (Ej. Negro)" required>
-                        <input type="number" id="new-price" placeholder="Precio ($)" required>
-                        <input type="number" id="new-stock" placeholder="Cantidad a ingresar" required>
-                        <button type="submit">Guardar en Inventario</button>
-                    </form>
-                </div>
-
-               
-                <div class="panel">
-                    <h2>Registrar Venta</h2>
-                    <form id="sale-form">
-                        <select id="sale-model" required>
-                            <option value="">Selecciona un modelo disponible...</option>
-                            
-                        </select>
-                        <input type="number" id="sale-quantity" placeholder="Cantidad vendida" min="1" required>
-                        <button type="submit" class="btn-success">Registrar Venta</button>
-                    </form>
-                </div>
+        <div id="tab-registros" class="tab-content">
+            <div class="panel">
+                <h2>Historial de Pedidos</h2>
+                <div id="orders-container"></div>
             </div>
         </div>
     </div>
-
-   <script src="Control.js"></script>    
+    
+    <script src="Control.js"></script>
 </body>
 </html>
