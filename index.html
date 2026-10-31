@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventario y Pedidos de Sandalias</title>
     <link rel="stylesheet" href="Estilo.css">
+    <link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#3b82f6">v
 </head>
 <body>
     <div class="container">
@@ -109,5 +111,12 @@
     </div>
     
     <script src="Control.js"></script>
+    <script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+        .then(() => console.log('Service Worker registrado exitosamente.'))
+        .catch(err => console.log('Error al registrar el Service Worker:', err));
+    }
+</script>
 </body>
 </html>
